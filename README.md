@@ -1,33 +1,27 @@
-# Base Bigdata playground: Hadoop + Hive + Spark
+# Bigdata playground: Hadoop + Hive + Spark + Zeppelin
 
-Base Docker image with just essentials: Hadoop, Hive and Spark.
+Script that supports setting up for Bigdata practice in your local environment.
+Using Hadoop, Hive ,Spark and Zeppelin.
 
 ## Software
 
 * [Hadoop 3.2.0](http://hadoop.apache.org/docs/r3.2.0/) in Fully Distributed (Multi-node) Mode
-
 * [Hive 3.1.2](http://hive.apache.org/) with HiveServer2 exposed to host.
-
 * [Spark 2.4.5](https://spark.apache.org/docs/2.4.5/) in YARN mode (Spark Scala, PySpark and SparkR)
-
 * [Zeppelin 0.9.0](https://zeppelin.apache.org/docs/0.9.0/) 
 
 ## Usage
 
-Hive JDBC port is exposed to host:
-* URI: `jdbc:hive2://localhost:10000`
-* Driver: `org.apache.hive.jdbc.HiveDriver` (org.apache.hive:hive-jdbc:3.1.2)
-* User and password: unused.
-
+Use Docker compose. Start all containers with the script below.
 ```bash
 cd docker-compose
 docker-compose up -d
 ```
+
 * **data/** directory is mounted into every container, you can use this as
 a storage both for files you want to process using Hive/Spark/whatever
 and results of those computations.
-* **zeppelin_notebooks/** contains, quite predictably, notebook files
-for Zeppelin. Thanks to that, all your notebooks persist across runs.
+* **zeppelin_notebooks/** Notebook files for Zeppelin. 
 
 To shut the whole thing down, run this from the same folder:
 ```bash
@@ -70,6 +64,13 @@ which on Hadoop Namenode/Spark Master node should include those:
 567 HistoryServer
 890 Master
 </pre>
+
+## Hive
+
+Hive JDBC port is exposed to host:
+* URI: `jdbc:hive2://localhost:10000`
+* Driver: `org.apache.hive.jdbc.HiveDriver` (org.apache.hive:hive-jdbc:3.1.2)
+* User and password: unused.
 
 ## Version compatibility notes
 * Hadoop 3.2.1 and Hive 3.1.2 are incompatible due to Guava version
