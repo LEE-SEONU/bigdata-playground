@@ -1,0 +1,739 @@
+{
+  "paragraphs": [
+    {
+      "text": "\n%sh\n\n#Only load a file to HDFS if it\u0027s not already there - because of this you can run all paragraphs as many times as you like.\nhadoop fs -test -e /grades.csv\n\nif ! hadoop fs -test -e /grades.csv\nthen\n    echo \"*******************************************\"\n    echo \"grades.csv is not in HDFS yet! Uploading...\"\n    echo \"*******************************************\"d\n    hadoop fs -put /data/grades.csv /\nfi\n\nhadoop fs -ls /",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:10:52.725",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2023-07-25 15:10:53,355 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2023-07-25 15:10:54,566 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2023-07-25 15:10:55,754 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 5 items\n-rw-r--r--   2 root supergroup        747 2023-07-25 15:09 /grades.csv\ndrwxr-xr-x   - root supergroup          0 2023-07-25 12:55 /log\ndrwxr-xr-x   - root supergroup          0 2023-07-25 12:55 /spark-jars\ndrwxrwx---   - root supergroup          0 2023-07-25 12:55 /tmp\ndrwxr-xr-x   - root supergroup          0 2023-07-25 15:06 /usr\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297796666_2124603076",
+      "id": "paragraph_1690262482003_934865822",
+      "dateCreated": "2023-07-25 15:09:56.666",
+      "dateStarted": "2023-07-25 15:10:52.727",
+      "dateFinished": "2023-07-25 15:10:56.386",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n\n// Basic Spark functions\nspark.range(1000 * 1000 * 1000).count()",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:10:58.994",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres1\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m \u003d 1000000000\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d0"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297796666_852702803",
+      "id": "paragraph_1690262482003_1416505858",
+      "dateCreated": "2023-07-25 15:09:56.666",
+      "dateStarted": "2023-07-25 15:10:58.996",
+      "dateFinished": "2023-07-25 15:11:20.864",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n\n// Dataframes\nval df \u003d Seq(\n  (\"One\", 1),\n  (\"Two\", 2),\n  (\"Three\", 3),\n  (\"Four\", 4)\n).toDF(\"This is\", \"an example\")\ndf.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:11:14.968",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+----------+\n|This is|an example|\n+-------+----------+\n|    One|         1|\n|    Two|         2|\n|  Three|         3|\n|   Four|         4|\n+-------+----------+\n\n\u001b[1m\u001b[34mdf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [This is: string, an example: int]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297796666_787625444",
+      "id": "paragraph_1690262482003_932580395",
+      "dateCreated": "2023-07-25 15:09:56.666",
+      "dateStarted": "2023-07-25 15:11:14.970",
+      "dateFinished": "2023-07-25 15:11:21.828",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n\n// Read CSV file from HDFS into Dataframe\nval df \u003d spark.read.format(\"csv\").option(\"header\", \"true\").load(\"/grades.csv\")\ndf.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:11:26.792",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\n|Last name|First name|        SSN|Test1|Test2|Test3|Test4|Final|Grade|\n+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\n|  Alfalfa|  Aloysius|123-45-6789|   40|   90|  100|   83|   49|   D-|\n|   Alfred|University|123-12-1234|   41|   97|   96|   97|   48|   D+|\n|    Gerty|    Gramma|567-89-0123|   41|   80|   60|   40|   44|    C|\n|  Android|  Electric|087-65-4321|   42|   23|   36|   45|   47|   B-|\n|  Bumpkin|      Fred|456-78-9012|   43|   78|   88|   77|   45|   A-|\n|   Rubble|     Betty|234-56-7890|   44|   90|   80|   90|   46|   C-|\n|   Noshow|     Cecil|345-67-8901|   45|   11|   -1|    4|   43|    F|\n|     Buff|       Bif|632-79-9939|   46|   20|   30|   40|   50|   B+|\n|  Airpump|    Andrew|223-45-6789|   49|    1|   90|  100|   83|    A|\n|   Backus|       Jim|143-12-1234|   48|    1|   97|   96|   97|   A+|\n|Carnivore|       Art|565-89-0123|   44|    1|   80|   60|   40|   D+|\n|    Dandy|       Jim|087-75-4321|   47|    1|   23|   36|   45|   C+|\n| Elephant|       Ima|456-71-9012|   45|    1|   78|   88|   77|   B-|\n| Franklin|     Benny|234-56-2890|   50|    1|   90|   80|   90|   B-|\n|   George|       Boy|345-67-3901|   40|    1|   11|   -1|    4|    B|\n|Heffalump|    Harvey|632-79-9439|   30|    1|   20|   30|   40|    C|\n+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\n\n\u001b[1m\u001b[34mdf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [Last name: string, First name: string ... 7 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d1"
+            },
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d2"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297796666_1481556974",
+      "id": "paragraph_1690262482004_1341643791",
+      "dateCreated": "2023-07-25 15:09:56.666",
+      "dateStarted": "2023-07-25 15:11:26.794",
+      "dateFinished": "2023-07-25 15:11:28.242",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n\n// Spark SQL and temporary views\ndf.createOrReplaceTempView(\"df\")\nspark.sql(\"SHOW TABLES\").show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:11:44.368",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------+---------+-----------+\n|database|tableName|isTemporary|\n+--------+---------+-----------+\n|        |       df|       true|\n+--------+---------+-----------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297796667_1908490080",
+      "id": "paragraph_1690262482004_1718467607",
+      "dateCreated": "2023-07-25 15:09:56.667",
+      "dateStarted": "2023-07-25 15:11:44.370",
+      "dateFinished": "2023-07-25 15:11:44.745",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n\nspark.sql(\"SELECT * FROM df WHERE Final \u003e 50\").show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:11:49.025",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "Last name": "string",
+                      "First name": "string",
+                      "SSN": "string",
+                      "Test1": "string",
+                      "Test2": "string",
+                      "Test3": "string",
+                      "Test4": "string",
+                      "Final": "string",
+                      "Grade": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\n|Last name|First name|        SSN|Test1|Test2|Test3|Test4|Final|Grade|\n+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\n|  Airpump|    Andrew|223-45-6789|   49|    1|   90|  100|   83|    A|\n|   Backus|       Jim|143-12-1234|   48|    1|   97|   96|   97|   A+|\n| Elephant|       Ima|456-71-9012|   45|    1|   78|   88|   77|   B-|\n| Franklin|     Benny|234-56-2890|   50|    1|   90|   80|   90|   B-|\n+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d3"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297796667_1505215602",
+      "id": "paragraph_1690262482004_932360316",
+      "dateCreated": "2023-07-25 15:09:56.667",
+      "dateStarted": "2023-07-25 15:11:49.027",
+      "dateFinished": "2023-07-25 15:11:50.058",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.kotlin\n\nspark.sql(\"SELECT * FROM df WHERE Final \u003e 50\").show()\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:13:42.143",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "kotlin",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/kotlin",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\n|Last name|First name|        SSN|Test1|Test2|Test3|Test4|Final|Grade|\n+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\n|  Airpump|    Andrew|223-45-6789|   49|    1|   90|  100|   83|    A|\n|   Backus|       Jim|143-12-1234|   48|    1|   97|   96|   97|   A+|\n| Elephant|       Ima|456-71-9012|   45|    1|   78|   88|   77|   B-|\n| Franklin|     Benny|234-56-2890|   50|    1|   90|   80|   90|   B-|\n+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d5"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297993845_808576497",
+      "id": "paragraph_1690297993845_808576497",
+      "dateCreated": "2023-07-25 15:13:13.846",
+      "dateStarted": "2023-07-25 15:13:42.145",
+      "dateFinished": "2023-07-25 15:13:42.346",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.sql\n\nSELECT * FROM df WHERE Final \u003e 50\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:14:22.628",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "Last name": "string",
+                      "First name": "string",
+                      "SSN": "string",
+                      "Test1": "string",
+                      "Test2": "string",
+                      "Test3": "string",
+                      "Test4": "string",
+                      "Final": "string",
+                      "Grade": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "Last name",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "First name",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "Last name\tFirst name\tSSN\tTest1\tTest2\tTest3\tTest4\tFinal\tGrade\nAirpump\tAndrew\t223-45-6789\t49\t1\t90\t100\t83\tA\nBackus\tJim\t143-12-1234\t48\t1\t97\t96\t97\tA+\nElephant\tIma\t456-71-9012\t45\t1\t78\t88\t77\tB-\nFranklin\tBenny\t234-56-2890\t50\t1\t90\t80\t90\tB-\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d4"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297796667_1298248524",
+      "id": "paragraph_1690274810545_975346860",
+      "dateCreated": "2023-07-25 15:09:56.667",
+      "dateStarted": "2023-07-25 15:11:52.604",
+      "dateFinished": "2023-07-25 15:11:52.768",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.pyspark\n\n# Check Python version - 2 not allowed.\nimport sys\nprint(sys.version)",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:09:56.667",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "3.7.10 (default, Mar  2 2021, 09:06:08) \n[GCC 8.3.0]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297796667_2136670266",
+      "id": "paragraph_1690262482004_1691169694",
+      "dateCreated": "2023-07-25 15:09:56.667",
+      "status": "READY"
+    },
+    {
+      "text": "%spark.pyspark\n\n#  Basic Spark functions\nspark.range(1000 * 1000 * 1000).count()",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:09:56.667",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "1000000000\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297796667_1361315568",
+      "id": "paragraph_1690262482004_489188920",
+      "dateCreated": "2023-07-25 15:09:56.667",
+      "status": "READY"
+    },
+    {
+      "text": "%spark.pyspark\n\n# Dataframes\ndf \u003d sqlContext.createDataFrame([(\"One\", 1), (\"Two\", 2), (\"Three\", 3), (\"Four\", 4)], (\"This is\", \"an example\"))\ndf.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:09:56.667",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+----------+\n|This is|an example|\n+-------+----------+\n|    One|         1|\n|    Two|         2|\n|  Three|         3|\n|   Four|         4|\n+-------+----------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297796667_949282893",
+      "id": "paragraph_1690262482004_199118308",
+      "dateCreated": "2023-07-25 15:09:56.667",
+      "status": "READY"
+    },
+    {
+      "text": "%spark.pyspark\n\n# Read CSV file from HDFS into Dataframe\ndf \u003d spark.read.format(\"csv\").option(\"header\", \"true\").load(\"/grades.csv\")\ndf.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:09:56.667",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\n|Last name|First name|        SSN|Test1|Test2|Test3|Test4|Final|Grade|\n+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\n|  Alfalfa|  Aloysius|123-45-6789|   40|   90|  100|   83|   49|   D-|\n|   Alfred|University|123-12-1234|   41|   97|   96|   97|   48|   D+|\n|    Gerty|    Gramma|567-89-0123|   41|   80|   60|   40|   44|    C|\n|  Android|  Electric|087-65-4321|   42|   23|   36|   45|   47|   B-|\n|  Bumpkin|      Fred|456-78-9012|   43|   78|   88|   77|   45|   A-|\n|   Rubble|     Betty|234-56-7890|   44|   90|   80|   90|   46|   C-|\n|   Noshow|     Cecil|345-67-8901|   45|   11|   -1|    4|   43|    F|\n|     Buff|       Bif|632-79-9939|   46|   20|   30|   40|   50|   B+|\n|  Airpump|    Andrew|223-45-6789|   49|    1|   90|  100|   83|    A|\n|   Backus|       Jim|143-12-1234|   48|    1|   97|   96|   97|   A+|\n|Carnivore|       Art|565-89-0123|   44|    1|   80|   60|   40|   D+|\n|    Dandy|       Jim|087-75-4321|   47|    1|   23|   36|   45|   C+|\n| Elephant|       Ima|456-71-9012|   45|    1|   78|   88|   77|   B-|\n| Franklin|     Benny|234-56-2890|   50|    1|   90|   80|   90|   B-|\n|   George|       Boy|345-67-3901|   40|    1|   11|   -1|    4|    B|\n|Heffalump|    Harvey|632-79-9439|   30|    1|   20|   30|   40|    C|\n+---------+----------+-----------+-----+-----+-----+-----+-----+-----+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297796667_1239949472",
+      "id": "paragraph_1690262482004_1356091232",
+      "dateCreated": "2023-07-25 15:09:56.667",
+      "status": "READY"
+    },
+    {
+      "text": "%spark.r\n\n# Dataframes\ndf \u003c- as.DataFrame(list(\"One\", \"Two\", \"Three\", \"Four\"), \"This is as example\")\nhead(df)",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:09:56.667",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/r",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Error in packageVersion(\"markdown\"): there is no package called ‘markdown’\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297796667_922657564",
+      "id": "paragraph_1690262482004_28552447",
+      "dateCreated": "2023-07-25 15:09:56.667",
+      "status": "READY"
+    },
+    {
+      "text": "%spark.r\n\n# Read CSV file from HDFS into Dataframe\ndf \u003c- read.df(\"/grades.csv\", \"csv\", header\u003d\"true\")\nhead(df)",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:09:56.667",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nLast name First name         SSN Test1 Test2 Test3 Test4 Final Grade\n1   Alfalfa   Aloysius 123-45-6789    40    90   100    83    49    D-\n2    Alfred University 123-12-1234    41    97    96    97    48    D+\n3     Gerty     Gramma 567-89-0123    41    80    60    40    44     C\n4   Android   Electric 087-65-4321    42    23    36    45    47    B-\n5   Bumpkin       Fred 456-78-9012    43    78    88    77    45    A-\n6    Rubble      Betty 234-56-7890    44    90    80    90    46    C-\n\n\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297796667_1009124244",
+      "id": "paragraph_1690262482004_489350809",
+      "dateCreated": "2023-07-25 15:09:56.667",
+      "status": "READY"
+    }
+  ],
+  "name": "02_Spark",
+  "id": "2J75667PB",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

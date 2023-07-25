@@ -1,0 +1,297 @@
+{
+  "paragraphs": [
+    {
+      "text": "%jdbc\n\n-- Does not support more than one statement per paragraph, it seems. Same goes for semicolon at the end of statements - errors out if you include it.\nDROP TABLE IF EXISTS grades",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:06:16.043",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297439259_392283056",
+      "id": "paragraph_1690262482003_903090102",
+      "dateCreated": "2023-07-25 15:03:59.259",
+      "dateStarted": "2023-07-25 15:06:16.052",
+      "dateFinished": "2023-07-25 15:06:18.259",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%jdbc\n\nCREATE TABLE grades(\n    `Last name` STRING,\n    `First name` STRING,\n    `SSN` STRING,\n    `Test1` DOUBLE,\n    `Test2` INT,\n    `Test3` DOUBLE,\n    `Test4` DOUBLE,\n    `Final` DOUBLE,\n    `Grade` STRING)\nCOMMENT \u0027https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html\u0027\nROW FORMAT DELIMITED\nFIELDS TERMINATED BY \u0027,\u0027\nSTORED AS TEXTFILE\ntblproperties(\"skip.header.line.count\"\u003d\"1\")",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:06:19.934",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297439259_1628901211",
+      "id": "paragraph_1690262482003_163397805",
+      "dateCreated": "2023-07-25 15:03:59.259",
+      "dateStarted": "2023-07-25 15:06:19.936",
+      "dateFinished": "2023-07-25 15:06:20.489",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%sh\n\n#Only load a file to HDFS if it\u0027s not already there - because of this you can run all paragraphs as many times as you like.\nhadoop fs -test -e /grades.csv\n\nif ! hadoop fs -test -e /grades.csv\nthen\n    echo \"*******************************************\"\n    echo \"grades.csv is not in HDFS yet! Uploading...\"\n    echo \"*******************************************\"d\n    hadoop fs -put /data/grades.csv /\nfi\n\nhadoop fs -ls /",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:08:25.397",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2023-07-25 15:08:25,984 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2023-07-25 15:08:27,219 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2023-07-25 15:08:28,397 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 5 items\n-rw-r--r--   2 root supergroup        747 2023-07-25 15:08 /grades.csv\ndrwxr-xr-x   - root supergroup          0 2023-07-25 12:55 /log\ndrwxr-xr-x   - root supergroup          0 2023-07-25 12:55 /spark-jars\ndrwxrwx---   - root supergroup          0 2023-07-25 12:55 /tmp\ndrwxr-xr-x   - root supergroup          0 2023-07-25 15:06 /usr\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297662182_1457350473",
+      "id": "paragraph_1690297662182_1457350473",
+      "dateCreated": "2023-07-25 15:07:42.182",
+      "dateStarted": "2023-07-25 15:08:25.399",
+      "dateFinished": "2023-07-25 15:08:29.023",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%jdbc\n\nLOAD DATA INPATH \u0027/grades.csv\u0027 INTO TABLE grades",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:08:33.746",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297439259_995118473",
+      "id": "paragraph_1690262482003_1637342049",
+      "dateCreated": "2023-07-25 15:03:59.259",
+      "dateStarted": "2023-07-25 15:08:33.748",
+      "dateFinished": "2023-07-25 15:08:33.948",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%jdbc\n\nSELECT * FROM grades",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:08:38.269",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "last name": "string",
+                      "first name": "string",
+                      "ssn": "string",
+                      "test1": "string",
+                      "test2": "string",
+                      "test3": "string",
+                      "test4": "string",
+                      "final": "string",
+                      "grade": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "last name\tfirst name\tssn\ttest1\ttest2\ttest3\ttest4\tfinal\tgrade\nAlfalfa\tAloysius\t123-45-6789\t40.0\t90\t100.0\t83.0\t49.0\tD-\nAlfred\tUniversity\t123-12-1234\t41.0\t97\t96.0\t97.0\t48.0\tD+\nGerty\tGramma\t567-89-0123\t41.0\t80\t60.0\t40.0\t44.0\tC\nAndroid\tElectric\t087-65-4321\t42.0\t23\t36.0\t45.0\t47.0\tB-\nBumpkin\tFred\t456-78-9012\t43.0\t78\t88.0\t77.0\t45.0\tA-\nRubble\tBetty\t234-56-7890\t44.0\t90\t80.0\t90.0\t46.0\tC-\nNoshow\tCecil\t345-67-8901\t45.0\t11\t-1.0\t4.0\t43.0\tF\nBuff\tBif\t632-79-9939\t46.0\t20\t30.0\t40.0\t50.0\tB+\nAirpump\tAndrew\t223-45-6789\t49.0\t1\t90.0\t100.0\t83.0\tA\nBackus\tJim\t143-12-1234\t48.0\t1\t97.0\t96.0\t97.0\tA+\nCarnivore\tArt\t565-89-0123\t44.0\t1\t80.0\t60.0\t40.0\tD+\nDandy\tJim\t087-75-4321\t47.0\t1\t23.0\t36.0\t45.0\tC+\nElephant\tIma\t456-71-9012\t45.0\t1\t78.0\t88.0\t77.0\tB-\nFranklin\tBenny\t234-56-2890\t50.0\t1\t90.0\t80.0\t90.0\tB-\nGeorge\tBoy\t345-67-3901\t40.0\t1\t11.0\t-1.0\t4.0\tB\nHeffalump\tHarvey\t632-79-9439\t30.0\t1\t20.0\t30.0\t40.0\tC\nAlfalfa\tAloysius\t123-45-6789\t40.0\t90\t100.0\t83.0\t49.0\tD-\nAlfred\tUniversity\t123-12-1234\t41.0\t97\t96.0\t97.0\t48.0\tD+\nGerty\tGramma\t567-89-0123\t41.0\t80\t60.0\t40.0\t44.0\tC\nAndroid\tElectric\t087-65-4321\t42.0\t23\t36.0\t45.0\t47.0\tB-\nBumpkin\tFred\t456-78-9012\t43.0\t78\t88.0\t77.0\t45.0\tA-\nRubble\tBetty\t234-56-7890\t44.0\t90\t80.0\t90.0\t46.0\tC-\nNoshow\tCecil\t345-67-8901\t45.0\t11\t-1.0\t4.0\t43.0\tF\nBuff\tBif\t632-79-9939\t46.0\t20\t30.0\t40.0\t50.0\tB+\nAirpump\tAndrew\t223-45-6789\t49.0\t1\t90.0\t100.0\t83.0\tA\nBackus\tJim\t143-12-1234\t48.0\t1\t97.0\t96.0\t97.0\tA+\nCarnivore\tArt\t565-89-0123\t44.0\t1\t80.0\t60.0\t40.0\tD+\nDandy\tJim\t087-75-4321\t47.0\t1\t23.0\t36.0\t45.0\tC+\nElephant\tIma\t456-71-9012\t45.0\t1\t78.0\t88.0\t77.0\tB-\nFranklin\tBenny\t234-56-2890\t50.0\t1\t90.0\t80.0\t90.0\tB-\nGeorge\tBoy\t345-67-3901\t40.0\t1\t11.0\t-1.0\t4.0\tB\nHeffalump\tHarvey\t632-79-9439\t30.0\t1\t20.0\t30.0\t40.0\tC\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297439259_1498952049",
+      "id": "paragraph_1690262482003_2052967293",
+      "dateCreated": "2023-07-25 15:03:59.259",
+      "dateStarted": "2023-07-25 15:08:38.272",
+      "dateFinished": "2023-07-25 15:08:39.494",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%sh\n\n# Take a look at the warehouse directory, specifically where our Hive table is stored.\n hadoop fs -ls /usr/hive/warehouse/grades",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 15:08:51.395",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2023-07-25 15:08:51,952 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 2 items\n-rw-r--r--   2 root supergroup        747 2023-07-25 15:06 /usr/hive/warehouse/grades/grades.csv\n-rw-r--r--   2 root supergroup        747 2023-07-25 15:08 /usr/hive/warehouse/grades/grades_copy_1.csv\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690297439259_662933915",
+      "id": "paragraph_1690262482003_945732384",
+      "dateCreated": "2023-07-25 15:03:59.260",
+      "dateStarted": "2023-07-25 15:08:51.397",
+      "dateFinished": "2023-07-25 15:08:52.598",
+      "status": "FINISHED"
+    }
+  ],
+  "name": "01_Hive",
+  "id": "2J8HHZ4P1",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
