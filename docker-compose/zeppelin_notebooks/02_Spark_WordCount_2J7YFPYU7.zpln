@@ -1,0 +1,392 @@
+{
+  "paragraphs": [
+    {
+      "text": "\n%sh\n\n#Only load a file to HDFS if it\u0027s not already there - because of this you can run all paragraphs as many times as you like.\nhadoop fs -test -e /alice_in_wonderland.txt\n\nif ! hadoop fs -test -e /alice_in_wonderland.txt\nthen\n    echo \"*******************************************\"\n    echo \"grades.csv is not in HDFS yet! Uploading...\"\n    echo \"*******************************************\"d\n    hadoop fs -put /data/alice_in_wonderland.txt /\nfi\n\nhadoop fs -ls /",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 16:22:32.423",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "SLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2023-07-25 16:22:33,014 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2023-07-25 16:22:34,260 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nSLF4J: Class path contains multiple SLF4J bindings.\nSLF4J: Found binding in [jar:file:/usr/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: Found binding in [jar:file:/usr/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]\nSLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.\nSLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]\n2023-07-25 16:22:35,573 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\nFound 7 items\n-rw-r--r--   2 root supergroup     148574 2023-07-25 15:37 /alice_in_wonderland.txt\n-rw-r--r--   2 root supergroup        747 2023-07-25 15:09 /grades.csv\ndrwxr-xr-x   - root supergroup          0 2023-07-25 12:55 /log\ndrwxr-xr-x   - root supergroup          0 2023-07-25 12:55 /spark-jars\ndrwxrwx---   - root supergroup          0 2023-07-25 12:55 /tmp\ndrwxr-xr-x   - root supergroup          0 2023-07-25 15:11 /user\ndrwxr-xr-x   - root supergroup          0 2023-07-25 15:06 /usr\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690299389224_1137733621",
+      "id": "paragraph_1690262482003_934865822",
+      "dateCreated": "2023-07-25 15:36:29.224",
+      "dateStarted": "2023-07-25 16:22:32.424",
+      "dateFinished": "2023-07-25 16:22:36.241",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n\nval textFile \u003d sc.textFile(\"/alice_in_wonderland.txt\")\nval countsDF \u003d textFile\n                .flatMap(line \u003d\u003e line.split(\" \"))\n                .map(word \u003d\u003e (word, 1))\n                .reduceByKey(_ + _)\n                .toDF(\"word\", \"count\")\n                 \n                 \ncountsDF.show()\ncountsDF.createOrReplaceTempView(\"countsDF\")",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 16:22:38.582",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-----------+-----+\n|       word|count|\n+-----------+-----+\n|       a--\u0027|    1|\n|     MINE.\u0027|    1|\n|    someone|    1|\n|housemaid,\u0027|    1|\n|  somebody,|    1|\n|       bone|    1|\n|     roses.|    1|\n|      line:|    1|\n|   mouse!\u0027)|    1|\n|      order|    2|\n|      tone.|    9|\n|  instead!\u0027|    1|\n|   passage,|    2|\n|      said;|    2|\n|     behind|   12|\n|   it--once|    1|\n|     pigeon|    1|\n|     wasn\u0027t|   11|\n|       been|   36|\n|       Dodo|    9|\n+-----------+-----+\nonly showing top 20 rows\n\n\u001b[1m\u001b[34mtextFile\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.rdd.RDD[String]\u001b[0m \u003d /alice_in_wonderland.txt MapPartitionsRDD[197] at textFile at \u003cconsole\u003e:30\n\u001b[1m\u001b[34mcountsDF\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [word: string, count: int]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d25"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690299952306_1305568012",
+      "id": "paragraph_1690299952306_1305568012",
+      "dateCreated": "2023-07-25 15:45:52.306",
+      "dateStarted": "2023-07-25 16:22:38.584",
+      "dateFinished": "2023-07-25 16:22:38.975",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.sql\n\nselect * from countsDF \nwhere word !\u003d \"\"\norder by count desc limit 20\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 16:22:41.953",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "word": "string",
+                      "count": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "word",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "count",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "word\tcount\nthe\t1507\nand\t714\nto\t703\na\t606\nof\t490\nshe\t484\nsaid\t416\nit\t346\nin\t345\nwas\t328\nI\t261\nyou\t252\nas\t237\nAlice\t221\nthat\t213\nher\t203\nat\t197\nhad\t175\nwith\t167\nall\t150\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d26"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690301217165_1547926457",
+      "id": "paragraph_1690301217165_1547926457",
+      "dateCreated": "2023-07-25 16:06:57.165",
+      "dateStarted": "2023-07-25 16:22:41.954",
+      "dateFinished": "2023-07-25 16:22:42.019",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.pyspark\n\nfrom pyspark.sql import SparkSession\nfrom pyspark.sql.functions import split, lit, col\n\n# textFile을 읽고 DataFrame을 생성\ntextFile \u003d spark.read.text(\"/alice_in_wonderland.txt\")\n\n# 단어를 분리하고, 각 단어를 1로 매핑하여 DataFrame으로 변환\ncountsDF \u003d textFile.select(split(textFile[\u0027value\u0027], \" \").alias(\u0027words\u0027)).selectExpr(\"explode(words) as word\").withColumn(\"count\", lit(1)).groupBy(\"word\").agg({\"count\": \"sum\"}).withColumnRenamed(\"sum(count)\", \"count\")\n\ncountsDF.show()\ncountsDF.createOrReplaceTempView(\"countsDF2\")\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 16:22:47.097",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------------+-----+\n|         word|count|\n+-------------+-----+\n|      flashed|    1|\n|         some|   47|\n|        still|   12|\n|         hope|    3|\n|        high:|    3|\n|        those|    9|\n|          few|    9|\n|         way!|    1|\n|       waters|    1|\n|       dear!\u0027|    3|\n|hippopotamus,|    1|\n|       mouse:|    1|\n|     chatte?\u0027|    1|\n|           By|    3|\n|       hoped)|    1|\n|     more--As|    1|\n|      enough;|    2|\n|       LITTLE|    2|\n|       youth,|    3|\n|     replied;|    3|\n+-------------+-----+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d27"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690301810777_1367722498",
+      "id": "paragraph_1690301810777_1367722498",
+      "dateCreated": "2023-07-25 16:16:50.777",
+      "dateStarted": "2023-07-25 16:22:47.099",
+      "dateFinished": "2023-07-25 16:22:47.318",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.sql\n\nselect * from countsDF2 \nwhere word !\u003d \"\"\norder by count desc limit 20",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 16:22:49.972",
+      "progress": 81,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "word": "string",
+                      "count": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "word",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "count",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "word\tcount\nthe\t1507\nand\t714\nto\t703\na\t606\nof\t490\nshe\t484\nsaid\t416\nit\t346\nin\t345\nwas\t328\nI\t261\nyou\t252\nas\t237\nAlice\t221\nthat\t213\nher\t203\nat\t197\nhad\t175\nwith\t167\nall\t150\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d28"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690301823868_860575932",
+      "id": "paragraph_1690301823868_860575932",
+      "dateCreated": "2023-07-25 16:17:03.868",
+      "dateStarted": "2023-07-25 16:22:49.974",
+      "dateFinished": "2023-07-25 16:22:51.107",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark.sql\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-25 16:21:03.831",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1690302063831_2061661960",
+      "id": "paragraph_1690302063831_2061661960",
+      "dateCreated": "2023-07-25 16:21:03.831",
+      "status": "READY"
+    }
+  ],
+  "name": "02_Spark_WordCount",
+  "id": "2J7YFPYU7",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
